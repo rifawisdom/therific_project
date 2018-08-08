@@ -1,0 +1,27 @@
+
+
+
+
+
+<body class="sign-in" style="background-image: url(http://cpml.com.au/wp-content/uploads/2016/04/CPML-background21.jpg);">
+<div id="clearance" class="sign-up animated zoomIn delay-2s fast" style="margin-top: 21vh;">
+  <div style="background-color: #64A19DB3; border-radius: 15px; width: 300px; padding: 50px; margin: auto;">
+    <!-- <h2 class="text-center my-2"><%= t(".title") %></h2> -->
+    <h4 class="text-center my-2" style="font-family: impact" >Therific</h4> 
+
+    <%= form_for :user, url: '/users' do |form| %>
+      <%= render partial: '/users/form', object: form %>
+
+      <% if request.path_info == '/signup/user' %>
+      	<%= form.hidden_field :role, :value => "user" %>
+      <% else %>
+      	<%= form.hidden_field :role, :value => "therapist" %>
+      <% end %>
+
+      <div class="submit-field text-center my-2 ">
+        <%= form.submit :class => "btn btn-outline-dark" %>
+      </div>
+    <% end %>
+  </div>
+</div>
+</body>

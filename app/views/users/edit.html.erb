@@ -1,0 +1,41 @@
+<div class="row" style="padding-top:50px">
+    <div class="col-md-8 offset-md-2">
+        <% if @user%>
+            <div align="center">
+                <%= image_tag "",style:"width:100px"%>
+            </div>
+            <h1 class="text-center">Personal Profile</h1>
+            <%= form_for @user,url: update_user_path,method: :patch,html:{class:"form-horizontal",role:"form"} do |form|%>
+            
+            
+              <div class="row">
+                <div class="col-md-2">
+                    <%= form.label :age%>
+                </div>
+                <div class="col-md-8">
+                    <%= form.text_field :age,class:"form-control"%>
+                </div>
+            </div>
+              <div class="row">
+                <div class="col-md-2">
+                    <%= form.label :gender%>
+                </div>
+                <div class="col-md-8">
+                     <%= form.text_field :gender,class:"form-control"%>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                    <%= form.label :phone%>
+                </div>
+                <div class="col-md-8">
+                    <%= form.text_field :phone,class:"form-control"%>
+                </div>
+            </div>    
+          
+            <div class="col-md-10 offset-md-2 form-group" style="padding-top: 10px">
+                <%= form.submit "Update",class:"btn btn-warning" %>
+            </div>
+                
+            <% end %>
+        <% end %>
