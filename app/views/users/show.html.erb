@@ -1,0 +1,21 @@
+
+    <main role="main">
+      <div class="container">
+        <section class="jumbotron text-center bg-light" id="background" >
+           <div><%= image_tag "default_pic.png",class:"profile_image border border-light",style:"width:200px"%></div>
+       
+                
+              <% if @user.role == "user" %> 
+                  <h1 class="jumbotron-heading" style="font-family: 'Montserrat'"><%=  "- My Profile - "%></h1>
+              <%else%>
+                  <h1 class="jumbotron-heading"><%="This is the profile of therapist, #{@user.name}!"%></h1>
+              <%end%>
+            <h6 class="lead text-info my-0 badge badge-warning" style="font-size:20px">Name : <%= @user.name%></h6>
+           
+            <p>
+              <%= link_to "Update Profile",edit_user_path ,class:"btn btn-secondary my-2"%>
+              
+             
+            </p>
+          </div>
+        </section>

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :therapists
+  resources :users, only: [:edit]
+  get 'users/:id', to: 'users#show', as:'users'
+  patch 'users/:id' => 'users#update', as:'update_user'
   get 'welcome/index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
  root to: 'welcome#index'
@@ -10,5 +14,9 @@ Rails.application.routes.draw do
 
   get '/signup' => 'users#new'
   post '/users' => 'users#create' 
+
+
+  get "/signup/user" => "users#new", as: "signup_user"
+  get "/signup/therapist" => "users#new", as: "signup_therapist"
 
 end

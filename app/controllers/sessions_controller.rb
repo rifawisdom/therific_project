@@ -10,7 +10,13 @@ class SessionsController < ApplicationController
       # Save the user id inside the browser cookie. This is how we keep the user 
       # logged in when they navigate around our website.
       session[:user_id] = user.id
-      redirect_to '/'
+
+
+      # @therapist = Therapist.find(current_user.therapist.id)
+      # redirect_to therapist_path(@therapist)
+      # byebug
+
+      redirect_to users_path(current_user)
     else
     # If user's login doesn't work, send them back to the login form.
       flash[:danger] = "Opps! There is something wrong.Please try again"
