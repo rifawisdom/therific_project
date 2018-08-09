@@ -12,10 +12,13 @@
               <%end%>
             <h6 class="lead text-info my-0 badge badge-warning" style="font-size:20px">Name : <%= @user.name%></h6>
            
+           <% if @user.role == "user" %> 
             <p>
               <%= link_to "Update Profile",edit_user_path ,class:"btn btn-secondary my-2"%>
-              
-             
+              <%= link_to "Therapist's list",therapists_path ,class:"btn btn-secondary my-2"%>
             </p>
+           <%else%>
+            <%= link_to "Update Profile",edit_user_path ,class:"btn btn-secondary my-2"%>
+           <%end%>
           </div>
         </section>
