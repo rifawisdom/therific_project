@@ -7,6 +7,12 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
  root to: 'welcome#index'
 
+ resources :therapists  do
+    resources :reservations, only: [:index, :create, :new]
+end
+
+resources :reservations, only: [:show]
+
   # these routes are for showing users a login form, logging them in, and logging them out.
   get '/login' => 'sessions#new'
   post '/login' => 'sessions#create'
@@ -18,5 +24,8 @@ Rails.application.routes.draw do
 
   get "/signup/user" => "users#new", as: "signup_user"
   get "/signup/therapist" => "users#new", as: "signup_therapist"
+
+   get "/search" => "therapists#search", as: "search"
+   post "/search" => "therapists#search_thing"
 
 end

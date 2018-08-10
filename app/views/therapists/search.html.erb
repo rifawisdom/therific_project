@@ -1,0 +1,21 @@
+<%= form_tag search_path, method: :get do %>
+ <%= label_tag "therapist_Name" %>
+ <%= text_field_tag :check_name, nil,list: 'name' %>
+ <datalist id='name'></datalist>
+ <%= submit_tag "Search" %>
+
+<% end %> 
+
+
+
+
+<% @user.each do |user| %>  
+    
+ 
+     <p>Name: <%= user.name%> </a>
+     <p>Covered Area: <%= user.therapist ? user.therapist.location : 'No location' %></p>
+     <p>Contact Num: <%= user.phone %></p>
+    
+     <hr>
+     <% end %>
+

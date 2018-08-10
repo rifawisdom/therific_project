@@ -1,13 +1,28 @@
 class TherapistsController < ApplicationController
 	def index
-		@user = User.all
+		
 		@therapist = Therapist.all
 	end
+	
+	def search
+		 @user = User.where("users.role = 1 and users.name ILIKE '%#{params['check_name']}%'")
+
+		 respond_to do |format|
+		 	format.html
+		 	format.json{render json: @user}
+		 end	
+	end
+
+	def search_thing
+		@user = User.where("users.role = 1 and users.name ILIKE '%#{params['search']}%'")
+		render json: @user
+	end
+
 	
 	def show
 		
 		
-	 @user = User.find(params[:id])
+	 @therapist = Therapist.find(params[:id])
 	end
 		
 	
@@ -31,6 +46,11 @@ class TherapistsController < ApplicationController
 	end
 
   private
+
+  def filter_params(params)
+	params.slice(:check_name)
+  end
+
   def therapist_params
     params.require(:therapist).permit(:address, :coins, user_id: :current_user.id)
   end

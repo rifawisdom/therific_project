@@ -23,19 +23,62 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
 
-
+    
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+
+
   <body>
 
-   
+
+
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #64a19d">
+
     <% if current_user %>
-      Signed in as <%= current_user.name %> | <%= link_to "Logout", '/logout' %>
+      <a class="navbar-brand"  style="font-family: Courier New">THERIFIC</a>
     <% else %>
-      <%= link_to 'Login', '/login' %> | <%= link_to 'Signup', '/signup' %>
+      <a class="navbar-brand" href="/" style="font-family: Courier New">THERIFIC</a>
     <% end %>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <% if current_user %>
+          <li class="nav-item">
+             <%= link_to "Signed in as, #{current_user.name}", users_path(current_user), :class => "nav-link"%>
+            
+          </li>
+          <li class="nav-item">
+            <%= link_to "Logout", '/logout', :class => "nav-link" %>
+          </li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Login', '/login', :class => "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Signup as user', '/signup/user', :class => "nav-link" %>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'Signup as therapist', '/signup/TherificProject', :class => "nav-link" %>
+          </li>
+        
+        <% end -%>
+      </ul>
+
+     
+    </div>
+  </nav>
+
+
+
+
+   
+   
 
  
   <div id="flash">
