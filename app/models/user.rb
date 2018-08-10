@@ -8,4 +8,6 @@ class User < ApplicationRecord
 
 	
 	enum role: [:user,:therapist,:admin]
+
+	scope :check_name, ->(search_name){ where("name ILIKE ?", "%#{search_name}%")}
 end

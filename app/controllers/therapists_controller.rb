@@ -5,19 +5,17 @@ class TherapistsController < ApplicationController
 	end
 	
 	def search
-
-		# below is ajax kind of search and work for both
-		 @therapist = Therapist.all
-		 filter_params(params).each do |key, value|
-		 	@therapist = @therapist.public_send(key,value) if value.present?
-		 end
+		 @user = User.where("users.role = 1 and users.name ILIKE '%#{params['check_name']}%'")
 
 		 respond_to do |format|
 		 	format.html
-		 	format.json{render json: @therapist}
-		 end
+		 	format.json{render json: @user}
+		 end	
+	end
 
-
+	def search_thing
+		@user = User.where("users.role = 1 and users.name ILIKE '%#{params['search']}%'")
+		render json: @user
 	end
 
 	

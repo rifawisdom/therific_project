@@ -1,6 +1,7 @@
 <%= form_tag search_path, method: :get do %>
- <%= label_tag "Therapist_Name" %>
- <%= text_field_tag :check_name %>
+ <%= label_tag "therapist_Name" %>
+ <%= text_field_tag :check_name, nil,list: 'name' %>
+ <datalist id='name'></datalist>
  <%= submit_tag "Search" %>
 
 <% end %> 
@@ -8,14 +9,13 @@
 
 
 
-<% @therapist.each do |therapist| %>  
+<% @user.each do |user| %>  
     
  
-     <p>Name: <a href= 'therapists/<%= therapist.id %>'><%= therapist.user.name%> </a>
-     <p>Covered Area: <%= therapist.location %></p>
-     <p>Contact Num: <%= therapist.user.phone %></p>
+     <p>Name: <%= user.name%> </a>
+     <p>Covered Area: <%= user.therapist ? user.therapist.location : 'No location' %></p>
+     <p>Contact Num: <%= user.phone %></p>
     
      <hr>
      <% end %>
 
-   

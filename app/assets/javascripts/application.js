@@ -18,18 +18,19 @@
 
 
 document.addEventListener("DOMContentLoaded", function(event){
+
 	$('#check_name').on('keypress', function(e){
 		 $.ajax({
 		     url: 'search',
-		     method: 'GET',
-		     data: $(this).serialize(),
+		     method: 'POST',
+		     data: 	{search: (e.target.value + e.key)},
 		     dataType: 'json',
 		     success: function(data){
+				console.log(data)
 		     	// console.log('pass')
-		       let names = document.getElementById("therapist_name");
+		       let names = document.getElementById("name");
 		       // console.log()
-		     
-		       names.innerHTML = "";   
+		       names.innerHTML=''
 
 		       data.forEach(function(therapist){
 		         const option = document.createElement("option");   
