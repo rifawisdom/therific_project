@@ -1,10 +1,24 @@
 
-This is Therapist profile page
 
- 
-<p>
-  <strong>Therapist's Address:</strong>
-  <%= @user.therapist.address %>
-</p>
+    <main role="main">
+      <div class="container">
+        <section class="jumbotron text-center bg-light" id="background" >
+           <div><%= image_tag "default_pic.png",class:"profile_image border border-light",style:"width:200px"%></div>
+       
+                
+              
+                  <h1 class="jumbotron-heading" style="font-family: 'Montserrat'"><%=  "- Therapist's Dashboard - "%></h1>
+             
+             
+            <h6 class="lead text-info my-0 badge badge-warning" style="font-size:20px">Name : <%= @therapist.user.name%></h6>
 
-
+             <h6 class="lead text-info my-0 badge badge-warning" style="font-size:20px">Covered Area : <%= @therapist.location%></h6>
+           
+            
+            <p>
+              
+              <%= link_to "Book therapist",new_therapist_reservation_path(@therapist.id), class:"btn btn-secondary my-2"%>
+            </p>
+          
+          </div>
+        </section>

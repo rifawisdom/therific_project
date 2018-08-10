@@ -14,3 +14,29 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+
+
+document.addEventListener("DOMContentLoaded", function(event){
+	$('#check_name').on('keypress', function(e){
+		 $.ajax({
+		     url: 'search',
+		     method: 'GET',
+		     data: $(this).serialize(),
+		     dataType: 'json',
+		     success: function(data){
+		     	// console.log('pass')
+		       let names = document.getElementById("therapist_name");
+		       // console.log()
+		     
+		       names.innerHTML = "";   
+
+		       data.forEach(function(therapist){
+		         const option = document.createElement("option");   
+		         option.value = therapist.name;
+		         names.append(option);
+		       })
+		     }
+   		})	  
+	 });
+});

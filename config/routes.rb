@@ -25,4 +25,6 @@ resources :reservations, only: [:show]
   get "/signup/user" => "users#new", as: "signup_user"
   get "/signup/therapist" => "users#new", as: "signup_therapist"
 
+   get "/search" => "therapists#search", as: "search"
+
 end

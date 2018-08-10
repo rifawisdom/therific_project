@@ -1,0 +1,21 @@
+<%= form_tag search_path, method: :get do %>
+ <%= label_tag "Therapist_Name" %>
+ <%= text_field_tag :check_name %>
+ <%= submit_tag "Search" %>
+
+<% end %> 
+
+
+
+
+<% @therapist.each do |therapist| %>  
+    
+ 
+     <p>Name: <a href= 'therapists/<%= therapist.id %>'><%= therapist.user.name%> </a>
+     <p>Covered Area: <%= therapist.location %></p>
+     <p>Contact Num: <%= therapist.user.phone %></p>
+    
+     <hr>
+     <% end %>
+
+   
