@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'braintree/new'
   resources :therapists
   resources :users, only: [:edit]
   get 'users/:id', to: 'users#show', as:'users'
@@ -11,7 +12,7 @@ Rails.application.routes.draw do
     resources :reservations, only: [:index, :create, :new]
 end
 
-resources :reservations, only: [:show]
+resources :reservations, only: [:show] 
 
   # these routes are for showing users a login form, logging them in, and logging them out.
   get '/login' => 'sessions#new'
@@ -27,5 +28,10 @@ resources :reservations, only: [:show]
 
    get "/search" => "therapists#search", as: "search"
    post "/search" => "therapists#search_thing"
+  
+  resources :reservations do 
+   post 'braintree/checkout'
+   get 'braintree/new'
+ end
 
 end

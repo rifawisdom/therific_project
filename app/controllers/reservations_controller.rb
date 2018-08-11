@@ -12,12 +12,18 @@ class ReservationsController < ApplicationController
 		
 	  	if @reservation.category == "3 days session"
 			@reservation.end_date = @reservation.start_date + 2.days
+			@reservation.price = 450
+			@therapist.coins += 300
 
 		elsif @reservation.category == "7 days session"
 			@reservation.end_date = @reservation.start_date + 6.days
-		
+			@reservation.price = 950
+			@therapist.coins += 700
+
 		else @reservation.category == "14 days session"
 			@reservation.end_date = @reservation.start_date + 13.days
+			@reservation.price = 1750
+			@therapist.coins += 1400
 		end
 
 
@@ -40,7 +46,7 @@ class ReservationsController < ApplicationController
 	private
 	def reservation_params
     	# strong params
-  		params.require(:reservation).permit(:start_date, :end_date, :special_request, :total_price, :category, :user_id, :therapist_id)
+  		params.require(:reservation).permit(:start_date, :end_date, :special_request, :price, :category, :user_id, :therapist_id)
 	end
 
 end
