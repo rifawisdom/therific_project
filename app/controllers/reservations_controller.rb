@@ -14,23 +14,28 @@ class ReservationsController < ApplicationController
 			@reservation.end_date = @reservation.start_date + 2.days
 			@reservation.price = 450
 			@therapist.coins += 300
+			@therapist.save
 
 		elsif @reservation.category == "7 days session"
 			@reservation.end_date = @reservation.start_date + 6.days
 			@reservation.price = 950
 			@therapist.coins += 700
+			@therapist.save
 
 		else @reservation.category == "14 days session"
 			@reservation.end_date = @reservation.start_date + 13.days
 			@reservation.price = 1750
 			@therapist.coins += 1400
+			@therapist.save
 		end
 
 
 		# respond_to do |format|
 		if @reservation.save
+			
 			flash[:success] = "Successfully reserved your session with therapist!"
-			redirect_to reservation_path(@reservation)
+			
+			redirect_to therapist_reservation_path(@therapist,@reservation)
 		else
 
 			flash[:danger] = "#{@reservation.errors.full_messages}"
@@ -41,6 +46,7 @@ class ReservationsController < ApplicationController
 
 	def show
 		@reservation = Reservation.find(params[:id])
+		@therapist = Therapist.find(params[:therapist_id])
 	end
 
 	private

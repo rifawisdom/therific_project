@@ -21,8 +21,9 @@ class TherapistsController < ApplicationController
 	
 	def show
 		
-		
 	 @therapist = Therapist.find(params[:id])
+	 @review = Review.where(therapist_id:@therapist.id)
+
 	end
 		
 	

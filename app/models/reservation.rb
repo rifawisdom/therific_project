@@ -1,6 +1,7 @@
 class Reservation < ApplicationRecord
   belongs_to :user
   belongs_to :therapist
+  has_many :therapists,through: :reviews
 
   validate :overlapping_reservations
 

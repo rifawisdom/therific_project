@@ -1,0 +1,65 @@
+<div class="container-fluid admin-panel">
+
+<h2 class="py-3">Admin Panel-therapist's list</h2>
+
+
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+		<th scope="col">ID</th>
+		<th scope="col">Name</th>
+		<th scope="col">Email</th>
+		<th scope="col">Area</th>
+		<th scope="col">Phone</th>
+		<th scope="col">Coins</th>
+		<th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+	<% @therapist.each do |th| %>
+    <tr>
+      <th scope="row"><%= th.id %></th>
+			<td><%= th.user.name %></td>
+			<td><%= th.user.email %></td>
+			<td><%= th.location %></td>
+			<td><%= th.user.phone %></td>
+			<td><%= th.coins %></td>
+			
+			
+			<td><%= link_to 'Delete this therapist', destroy_therapist_path(th), method: :delete, remote: true, data:{confirm: "Are you sure?"} %></td>
+    </tr>
+	<% end %> 
+  </tbody>
+</table></br>
+
+<h3>-Reviews's List-</h3>
+
+<table class="table">
+  <thead class="thead-dark">
+    <tr>
+		<th scope="col">ID</th>
+		<th scope="col">Reviewed_by</th>
+		<th scope="col">Comment</th>
+		<th scope="col">Reservation</th>
+		<th scope="col">Therapist Name</th>
+		<th scope="col">Star</th>
+		<th scope="col">Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+	<% @review.each do |rv| %>
+    <tr>
+      <th scope="row"><%= rv.id %></th>
+			<td><%= User.find(rv.reviewed_by).name %></td>
+			<td><%= rv.comment %></td>
+			<td><%= rv.reservation_id %></td>
+			<td><%= Therapist.find(rv.therapist_id).user.name %></td>
+			<td><%= rv.star %></td>
+			
+			
+			<td><%= link_to 'Delete this review', destroy_review_path(rv), method: :delete, remote: true, data:{confirm: "Are you sure?"} %></td>
+    </tr>
+	<% end %> 
+  </tbody>
+</table></br>
