@@ -51,6 +51,8 @@ GEM
     bindex (0.5.0)
     bootsnap (1.3.1)
       msgpack (~> 1.0)
+    braintree (2.90.0)
+      builder (>= 2.0.0)
     builder (3.2.3)
     byebug (10.0.2)
     capybara (3.5.1)
@@ -74,6 +76,7 @@ GEM
     coffee-script-source (1.12.2)
     concurrent-ruby (1.0.5)
     crass (1.0.4)
+    diff-lcs (1.3)
     erubi (1.7.1)
     execjs (2.7.0)
     faker (1.9.1)
@@ -144,6 +147,23 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    rspec-core (3.8.0)
+      rspec-support (~> 3.8.0)
+    rspec-expectations (3.8.1)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.8.0)
+    rspec-mocks (3.8.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.8.0)
+    rspec-rails (3.8.0)
+      actionpack (>= 3.0)
+      activesupport (>= 3.0)
+      railties (>= 3.0)
+      rspec-core (~> 3.8.0)
+      rspec-expectations (~> 3.8.0)
+      rspec-mocks (~> 3.8.0)
+      rspec-support (~> 3.8.0)
+    rspec-support (3.8.0)
     ruby_dep (1.5.0)
     rubyzip (1.2.1)
     sass (3.5.7)
@@ -199,6 +219,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt (~> 3.1.7)
   bootsnap (>= 1.1.0)
+  braintree
   byebug
   capybara (>= 2.15, < 4.0)
   chromedriver-helper
@@ -210,6 +231,7 @@ DEPENDENCIES
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
   rails (~> 5.2.0)
+  rspec-rails
   sass-rails (~> 5.0)
   selenium-webdriver
   spring

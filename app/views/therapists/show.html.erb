@@ -3,7 +3,7 @@
     <main role="main">
       <div class="container">
         <section class="jumbotron text-center bg-light" id="background" >
-           <div><%= image_tag "default_pic.png",class:"profile_image border border-light",style:"width:200px"%></div>
+           <div><%= image_tag "default_pic.png",class:"profile_image ",style:"width:200px"%></div>
        
                 
               
@@ -22,3 +22,28 @@
           
           </div>
         </section>
+
+        
+ <div class="row d-flex justify-content-around" style="padding-bottom:100px">
+  <% @review.each do |review|%>
+    <div class="col-mx-auto mx-1 my-4">
+     <div class="card bg-dark text-white" style="width:18rem; ">
+    
+      <div class="card-body">
+        <h5 class="card-title">Reviewed by: <%=User.find(review.reviewed_by).name%></h5>
+        <p class="card-text" style="height:100px">Reviews: <%=review.comment%></p>
+      </div>
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item bg-dark text-white">Ratings: <%=review.star%></li>
+      </ul>
+  
+  
+  
+     </div>
+    </div>
+
+  <%end%> 
+</div>
+
+
+        
