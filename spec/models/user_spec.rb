@@ -94,26 +94,26 @@ feature 'Visitor Login' do
 	  scenario 'with valid email and password' do
 	    signup_path 'valid@example.com', 'password'
 
-	    expect(page).to have_content('/logout')
+	    expect(page).to have_content('/users/current_user.id')
 	  end
 
 	  scenario 'with invalid email' do
-	    signup_path 'invalid_email', 'password'
+	    signup_path '', 'password'
 
-	    expect(page).to have_content('/login')
+	    expect(page).to have_content('/')
 	  end
 
 	  scenario 'with blank password' do
 	    signup_path 'valid@example.com', ''
 
-	    expect(page).to have_content('/login')
+	    expect(page).to have_content('/')
 	  end
 
-	  def sign_up_with(email, password)
-	    visit sign_up_path
+	  def login_with(email, password)
+	    visit login_path
 	    fill_in 'Email', with: email
 	    fill_in 'Password', with: password
-	    click_button 'Sign up'
+	    click_button 'Submit'
 	  end
 end
 end
