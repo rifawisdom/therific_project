@@ -3,6 +3,8 @@ class Reservation < ApplicationRecord
   belongs_to :therapist
   has_many :therapists,through: :reviews
 
+  validates :start_date, presence: true
+  validates :category, presence: true
   validate :overlapping_reservations
 
 
@@ -15,9 +17,17 @@ class Reservation < ApplicationRecord
 			reservations.each do |r|
 				if overlaps?(r)
 					return errors.add(:unavailable, "dates! Someone has already book session with this therapist")
+				elsif backdates?
+					return errors.add(:error, "dates! Cannot be lesser than today")
+
 				end
 			end
 		end
+	end
+
+	def backdates?
+
+		start_date < Date.today
 	end
 
 	
