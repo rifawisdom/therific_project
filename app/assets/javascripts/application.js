@@ -17,6 +17,7 @@
 
 
 
+
 document.addEventListener("DOMContentLoaded", function(event){
 
 	$('#check_name').on('keypress', function(e){
