@@ -14,7 +14,7 @@ class ReviewsController < ApplicationController
 		if @review.save 
 			
 			flash[:success] = "Thank you for your rating and review!"
-			redirect_to root_path
+			redirect_to users_path(current_user)
 		else 
 			flash[:danger] = "Oh no! Rating and Comment box must be filled"
 			redirect_back(fallback_location: new_reservation_review_path(@reservation))

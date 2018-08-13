@@ -7,18 +7,54 @@
                 
               <% if @user.role == "user" %> 
                   <h1 class="jumbotron-heading" style="font-family: 'Montserrat'"><%=  "- My Profile - "%></h1>
-              <%else%>
+              
+                  <h6 class="lead text-info my-0 badge badge-warning" style="font-size:20px">Name : <%= @user.name%></h6>
+
+              <%elsif @user.role == "therapist" &&  current_user.id == @user.id%>
                   <h1 class="jumbotron-heading"><%="This is the profile of therapist, #{@user.name}!"%></h1>
+                  <h6 class="lead text-info my-0 badge badge-warning" style="font-size:20px">Coins : <%= @user.therapist.coins%></h6>
+
               <%end%>
-            <h6 class="lead text-info my-0 badge badge-warning" style="font-size:20px">Name : <%= @user.name%></h6>
-           
-           <% if @user.role == "user" %> 
-            <p>
-              <%= link_to "Update Profile",edit_user_path ,class:"btn btn-secondary my-2"%>
-              <%= link_to "Therapist's list",therapists_path ,class:"btn btn-secondary my-2"%>
-            </p>
-           <%else%>
-            <%= link_to "Update Profile",edit_user_path ,class:"btn btn-secondary my-2"%>
-           <%end%>
+               <div>
+                   <% if @user.role == "user" %>
+                    <p>
+                      <%= link_to "Update Profile",edit_user_path ,class:"btn btn-secondary my-2"%>
+                      <%= link_to "Therapist's list",therapists_path ,class:"btn btn-secondary my-2"%>
+                    </p>
+                   <%elsif @user.role == "therapist" &&  current_user.id == @user.id%>
+                    <%= link_to "Update Profile",edit_user_path ,class:"btn btn-secondary my-2"%>
+                   <%end%>
+              </div>
           </div>
         </section>
+
+              <div>
+                <% if @user.role == "therapist" && current_user.id == @user.id%>
+                 <% i = 1%>
+                 <%@user.therapist.reservations.all.each do |rv|%>
+                   <p>No: <%=i.to_s%></p>
+                   <p>Type: <%=rv.category%></p>
+                   <p>Due Date: <%=rv.start_date%></p>
+                   <p>Patient's Name:<%=rv.user.name%></p>
+                   <p>Patient's Contact Number:<%=rv.user.phone%></p>
+                   <hr>
+                   <br>
+                   <% i += 1%>
+                  <%end%>
+
+                 <%else%>
+                 <% i = 1%>
+                  <%@user.reservations.each do |rv|%>
+                  
+                   <p>No: <%=i.to_s%></p>
+                   <p>Type: <%=rv.category%></p>
+                   <p>Due Date: <%=rv.start_date%></p>
+                  
+                   <hr>
+                   <br>
+                  <% i += 1%>
+                  <%end%>
+                 
+                <%end%>
+              </div>
+                  

@@ -19,6 +19,9 @@
               
               <%= link_to "Book therapist",new_therapist_reservation_path(@therapist.id), class:"btn btn-secondary my-2"%>
             </p>
+            <%if current_user.id == @therapist.user.id%>
+              <h6 class="lead text-info my-0 badge badge-warning" style="font-size:20px">Name : <%= @therapist.coins%></h6>
+            <%end%>
           
           </div>
         </section>

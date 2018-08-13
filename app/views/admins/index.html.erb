@@ -17,7 +17,7 @@
     </tr>
   </thead>
   <tbody>
-	<% @therapist.each do |th| %>
+	<% @therapist.order(id: :desc).each do |th| %>
     <tr>
       <th scope="row"><%= th.id %></th>
 			<td><%= th.user.name %></td>
@@ -48,7 +48,7 @@
     </tr>
   </thead>
   <tbody>
-	<% @review.each do |rv| %>
+	<% @review.order(id: :desc).each do |rv| %>
     <tr>
       <th scope="row"><%= rv.id %></th>
 			<td><%= User.find(rv.reviewed_by).name %></td>
